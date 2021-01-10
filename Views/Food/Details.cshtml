@@ -1,0 +1,34 @@
+﻿@model Amada_Management.Models.Food
+@{
+    ViewBag.Title = "View";
+    var summaryNotFoundMsg = "This food has no summary!";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("Denumire", "Denumire:")
+<br />
+<p>@Model.Denumire</p>
+
+@Html.Label("Pret", "Pret:")
+<br />
+<p>@Model.Pret</p>
+
+@Html.Label("Categorie", "Categorie:")
+<br />
+<p>@Model.Category.Name</p>
+
+
+
+
+@if (Model.Types.Count > 0)
+{
+    @Html.Label("Types", "Types:")
+    <br />
+    <ul>
+        @foreach (var type in Model.Types)
+        {
+            <li>@type.Name</li>
+        }
+    </ul>
+}
