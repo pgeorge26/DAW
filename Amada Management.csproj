@@ -181,6 +181,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Food\Details.cshtml" />
     <Content Include="Views\Food\Index.cshtml" />
+    <Content Include="Views\Food\New.cshtml" />
+    <Content Include="Views\Food\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

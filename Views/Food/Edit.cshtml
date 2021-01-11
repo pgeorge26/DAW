@@ -1,0 +1,47 @@
+﻿@model Amada_Management.Models.Food
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editare informatii mancare</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        @Html.HiddenFor(x => x.FoodId);
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Denumire, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.Denumire, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Denumire, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Pret, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.Pret, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Pret, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Informatii, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.Informatii, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Informatii, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </div>
+}

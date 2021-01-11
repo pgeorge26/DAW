@@ -1,6 +1,6 @@
 ﻿@model Amada_Management.Models.Food
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "O descriere mai amanuntita despre produs";
     var summaryNotFoundMsg = "This food has no summary!";
 }
 
@@ -14,19 +14,18 @@
 <br />
 <p>@Model.Pret</p>
 
-@Html.Label("Categorie", "Categorie:")
+@Html.Label("Informatii", "Informatii:")
 <br />
-<p>@Model.Category.Name</p>
+<p>@Model.Informatii</p>
 
 
 
-
-@if (Model.Types.Count > 0)
+@if (Model.Categories.Count > 0)
 {
-    @Html.Label("Types", "Types:")
+    @Html.Label("Categories", "Categories:")
     <br />
     <ul>
-        @foreach (var type in Model.Types)
+        @foreach (var type in Model.Categories)
         {
             <li>@type.Name</li>
         }

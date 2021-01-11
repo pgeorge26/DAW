@@ -1,0 +1,37 @@
+﻿@model Amada_Management.Models.Food
+@{
+    ViewBag.Title = "Adauga un nou fel de mancare";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Food", method: FormMethod.Post))
+{
+    @Html.Label("Denumire", "Denumire:")
+    <br />
+    @Html.TextBoxFor(b => b.Denumire, null, new { placeholder = "Type in the food's name", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Denumire, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Pret", "Pret:")
+    <br />
+    @Html.TextBoxFor(b => b.Pret, null, new { placeholder = "Type in the food's price", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Pret, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Informatii", "Informatii:")
+    <br />
+    @Html.TextArea("Informatii", null, new { placeholder = "Type in the food's informations", @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Informatii, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Type", "Type:")
+    <br />
+    @Html.DropDownListFor(b => b.TypeId, new SelectList(Model.TypesList, "Value", "Text"), "Choose a food type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.TypeId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+   
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

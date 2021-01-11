@@ -3,10 +3,14 @@
     ViewBag.Title = "Foods";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Lista cu mancarea pe care o poti servi la restaurantul nostru !</h2>
+
+<a href="/Food/New" class="btn btn-success">Adauga mancare</a>
+<br />
 
 @foreach (var food in ViewBag.Foods)
 {
+<div class="col-md-4 col-lg-4 col-xs-6 col-sm-4">
     <div class="panel panel-default">
         <div class="panel-body">
 
@@ -20,8 +24,22 @@
 
             @using (Html.BeginForm(actionName: "Details", controllerName: "Food", method: FormMethod.Get, routeValues: new { id = food.FoodId }))
             {
-                <button class="btn btn-primary">Details</button>
+                <button class="btn btn-info">Details</button>
             }
+            <br />
+            <a href="/Food/Edit/@food.FoodId" class="btn btn-warning">Editare</a>
+
+            <br />
+
+
+            <a href="/Food/Delete/@food.FoodId" class="btn btn-danger">Sterge</a>
+
         </div>
     </div>
-}
+
+    <br />
+
+    
+
+</div>
+        }

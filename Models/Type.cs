@@ -8,12 +8,12 @@ namespace Amada_Management.Models
 {
     public class Type
     {
-        [Key]
+        
         public int TypeId { get; set; }
 
         public string Name { get; set; }
 
-        // many to many
+        // many to one
         public virtual ICollection<Food> Foods { get; set; }
     }
 }

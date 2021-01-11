@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-
+using System.Web.Mvc;
 
 namespace Amada_Management.Models
 {
@@ -15,19 +15,23 @@ namespace Amada_Management.Models
         [Key]
         public int FoodId { get; set; }
 
-        [MaxLength(256)]
+        [MinLength(2, ErrorMessage = "Denumirea este prea scurta !"),
+         MaxLength(200, ErrorMessage = "Denumirea este prea lunga!")]
         public string Denumire { get; set; }
         public int Pret { get; set; }
 
-        [MinLength(10, ErrorMessage = "Informations cannot be less than 10"),
- MaxLength(200, ErrorMessage = "Informations cannot be more than 200")]
+        [MinLength(10, ErrorMessage = "Prea putine informatii"),
+        MaxLength(200, ErrorMessage = "Prea multe informatii")]
         public string Informatii { get; set; }
 
+        public virtual ICollection<Category> Categories { get; set; }
+
         // one to many
-        [Column("Category_id")]
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual ICollection<Type> Types { get; set; }
+        public int TypeId { get; set; }
+        [ForeignKey("TypeId")]
+        public virtual Type Type { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem> TypesList { get; set; }
 
     }
 
@@ -45,19 +49,25 @@ namespace Amada_Management.Models
         public DbSet<Category> Categories { get; set; }
     }
 
-    public class Initp : DropCreateDatabaseAlways<DbCtx>
+    public class Initp : DropCreateDatabaseIfModelChanges<DbCtx>
     {
         protected override void Seed(DbCtx ctx)
         {
+            Type meniu1 = new Type { TypeId = 1, Name = "Vegan" };
+            Type meniu2 = new Type { TypeId = 2, Name = "Carnivor" };
+
+            ctx.Types.Add(meniu1);
+            ctx.Types.Add(meniu2);
+
             ctx.Foods.Add(new Food
             {
                 FoodId = 1,
                 Denumire = "Pastrav",
                 Pret = 35,
                 Informatii = " Un pastrav proaspat",
-                Category = new Category { Name = "Peste" },
-                Types = new List<Type> {
-                    new Type { Name = "Carnivor"}
+                TypeId=meniu2.TypeId,
+                Categories = new List<Category> {
+                    new Category { Name = "Peste"}
                 }
 
             }); ;
@@ -67,9 +77,9 @@ namespace Amada_Management.Models
                 Denumire = "Salata de rosii",
                 Pret = 10,
                 Informatii = " O salata fresh",
-                Category = new Category { Name = "Salate" },
-                Types = new List<Type> {
-                    new Type { Name = "Vegan"}
+                TypeId = meniu1.TypeId,
+                Categories = new List<Category> {
+                    new Category { Name = "Salate"}
                 }
             });
             ctx.SaveChanges();
