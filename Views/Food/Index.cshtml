@@ -2,44 +2,46 @@
 @{
     ViewBag.Title = "Foods";
 }
+<br />
+<br />
+<br />
 
-<h2>Lista cu mancarea pe care o poti servi la restaurantul nostru !</h2>
 
 <a href="/Food/New" class="btn btn-success">Adauga mancare</a>
 <br />
 
 @foreach (var food in ViewBag.Foods)
 {
-<div class="col-md-4 col-lg-4 col-xs-6 col-sm-4">
-    <div class="panel panel-default">
-        <div class="panel-body">
+    <div class="col-md-4 col-lg-4 col-xs-6 col-sm-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
 
-            @Html.Label("Denumire", "Denumire:")
-            <br />
-            <p>@food.Denumire</p>
+                @Html.Label("Denumire", "Denumire:")
+                <br />
+                <p>@food.Denumire</p>
 
-            @Html.Label("Pret", "Pret:")
-            <br />
-            <p>@food.Pret</p>
+                @Html.Label("Pret", "Pret:")
+                <br />
+                <p>@food.Pret</p>
 
-            @using (Html.BeginForm(actionName: "Details", controllerName: "Food", method: FormMethod.Get, routeValues: new { id = food.FoodId }))
-            {
-                <button class="btn btn-info">Details</button>
-            }
-            <br />
-            <a href="/Food/Edit/@food.FoodId" class="btn btn-warning">Editare</a>
+                @using (Html.BeginForm(actionName: "Details", controllerName: "Food", method: FormMethod.Get, routeValues: new { id = food.FoodId }))
+                {
+                    <button class="btn btn-info">Details</button>
+                }
+                <br />
+                <a href="/Food/Edit/@food.FoodId" class="btn btn-warning">Editare</a>
 
-            <br />
+                <br />
 
 
-            <a href="/Food/Delete/@food.FoodId" class="btn btn-danger">Sterge</a>
+                <a href="/Food/Delete/@food.FoodId" class="btn btn-danger">Sterge</a>
 
+            </div>
         </div>
+
+        <br />
+
+
+
     </div>
-
-    <br />
-
-    
-
-</div>
-        }
+}

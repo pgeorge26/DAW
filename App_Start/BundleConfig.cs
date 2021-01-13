@@ -24,6 +24,12 @@ namespace Amada_Management
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/css/main.css",
+                      "~/css/jquery-ui.css",
+                      "~/css/normalize.css",
+                      "~/css/main.css",
+                      "~/css/bootstrap.css",
+                      "~/css/font-awesome.min.css",
                       "~/Content/site.css"));
         }
     }
